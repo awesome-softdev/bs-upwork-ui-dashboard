@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Open+Sans"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <!-- select2 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" media="screen" href="./assets/css/style.css" />
+    <link rel="stylesheet" media="print" href="./assets/css/print.css" />
+  </head>
+
+  <body>
+    <div class="dashboard_container">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">TODAY</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">1W</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">2W</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">3W</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">1M</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">THIS YEAR</a>
+            </li>
+            <select name="state" id="navbar_select">
+              <option value="location">LOCATION</option>
+            </select>
+          </ul>
+
+          <div class="form-inline my-2 my-lg-0">
+            <span class="navbar_date">01/01/20</span>
+            <span class="navbar_badge badge"
+              ><i class="fa fa-arrow-right"></i
+            ></span>
+            <span class="navbar_date">01/07/20</span>
+          </div>
+        </div>
+      </nav>
+
+      <div class="gradient_bottom_box">
+        <div class="clinic_container rounded_box">
+          <div class="rounded_box_header">
+            <span class="title">CLINIC VISIT ACTIVITY</span>
+            <div class="date_range">
+              <span class="label">DATE RANGE: </span>
+              <span class="value">1M</span>
+            </div>
+          </div>
+          <div class="rounded_box_content">
+            <div class="mark_bar container-fluid">
+              <div class="row">
+                <div class="col-6 col-md-5 col-xl-8 bg_blue border_right">
+                  <div class="marker">
+                    <span class="label">SCHEDULED</span>
+                    <span class="value scheduled">120</span>
+                  </div>
+                </div>
+                <div
+                  class="col-6 col-md-3 col-xl-2 bg_blue border_left border_right"
+                >
+                  <div class="marker">
+                    <span class="label">RESCHEDULED</span>
+                    <span class="value rescheduled">30</span>
+                  </div>
+                </div>
+                <div
+                  class="col-6 col-md-2 col-xl-1 bg_blue border_left border_right"
+                >
+                  <div class="marker">
+                    <span class="label">WALK-INS</span>
+                    <span class="value walk_ins">14</span>
+                  </div>
+                </div>
+                <div class="col-6 col-md-2 col-xl-1 bg_red border_left">
+                  <div class="marker">
+                    <span class="label">FAILED</span>
+                    <span class="value failed">16</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="chart_bar">
+              <!-- <div class="left_chart_bar"> -->
+              <div class="total_visit">
+                <div class="bg_grey">
+                  <div class="bg_white">
+                    <div class="bg_blue">
+                      <span class="total_visit_value">
+                        164
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <span class="total_visit_label">
+                  TOTAL VISITS
+                </span>
+              </div>
+              <span class="fa fa-arrow-right total_visit_arrow"></span>
+              <div class="time_chart">
+                <div class="chart">
+                  <div class="time1_container">
+                    <canvas id="timeCanvas1" width="300" height="300"></canvas>
+                  </div>
+                  <div class="time2_container">
+                    <canvas id="timeCanvas2" width="300" height="300"></canvas>
+                  </div>
+                  <div class="chart_center">
+                    <span class="center_up">42</span><br />
+                    <span class="center_down">12</span>
+                  </div>
+                </div>
+                <div class="label">
+                  <span class="label_up">AVERAGE VISIT TIME(MIN.)</span>
+                  <span class="label_down">WAIT TIME</span>
+                </div>
+              </div>
+              <!-- </div> -->
+              <!-- <div class="right_chart_bar"> -->
+              <div class="health_chart">
+                <div class="health_chart_chart">
+                  <div class="chart">
+                    <div class="health1_container">
+                      <canvas
+                        id="healthCanvas1"
+                        width="300"
+                        height="300"
+                      ></canvas>
+                    </div>
+                    <div class="health2_container">
+                      <canvas
+                        id="healthCanvas2"
+                        width="300"
+                        height="300"
+                      ></canvas>
+                    </div>
+                    <div class="chart_center">
+                      <span class="center_value">71</span>
+                      <span class="percent">%</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="label">% OCC HEALTH (V. PERSONAL)</div>
+              </div>
+              <div class="outside_cost">
+                <div class="chart bg_grey">
+                  <div class="chart_in bg_white">
+                    <div class="chart_center">
+                      <span class="dollar">$</span>
+                      <span class="value">42,605</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="label">
+                  OUTSIDE COST OF SERVICES PROVIDED
+                </div>
+              </div>
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid margin_top_25">
+        <div class="row">
+          <div class="col-xl-6">
+            <div class="gradient_bottom_box">
+              <div class="visit_container rounded_box">
+                <div class="rounded_box_header">
+                  <span class="title">VISIT TYPES</span>
+                  <div class="date_range">
+                    <span class="label">DATE RANGE: </span>
+                    <span class="value">1M</span>
+                  </div>
+                </div>
+                <div class="rounded_box_content content_padding_25">
+                  <div class="row">
+                    <div class="col-md-3 col-6">
+                      <div class="marker surveillance">
+                        <span class="label">SURVEILLANCE</span>
+                        <span class="value">64</span>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-6 active">
+                      <div class="marker injuries active">
+                        <span class="label">INJURIES</span>
+                        <span class="value">18</span>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                      <div class="marker pre_placement">
+                        <span class="label">PRE PLACEMENT</span>
+                        <span class="value">45</span>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                      <div class="marker other">
+                        <span class="label">OTHER</span>
+                        <span class="value">37</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="chart_wrapper">
+                    <div class="chart">
+                      <canvas id="visit_canvas"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <div class="gradient_bottom_box">
+              <div class="services_container rounded_box">
+                <div class="rounded_box_header">
+                  <span class="title">SERVICES / TESTS PROVIDED</span>
+                  <div class="date_range">
+                    <span class="label">DATE RANGE: </span>
+                    <span class="value">1M</span>
+                  </div>
+                </div>
+                <div class="rounded_box_content content_padding_25">
+                  <div class="progress audiometry">
+                    <div
+                      class="progress-bar bg_blue"
+                      role="progressbar"
+                      style="width: 90%;"
+                      aria-valuenow="25"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    >
+                      <span>AUDIOMETRY</span>
+                      <span>127</span>
+                    </div>
+                  </div>
+                  <div class="progress spirometry">
+                    <div
+                      class="progress-bar bg_blue"
+                      role="progressbar"
+                      style="width: 53%;"
+                      aria-valuenow="25"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    >
+                      <span>SPIROMETRY</span>
+                      <span>52</span>
+                    </div>
+                  </div>
+                  <div class="progress drug_screen">
+                    <div
+                      class="progress-bar bg_blue"
+                      role="progressbar"
+                      style="width: 90%;"
+                      aria-valuenow="25"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    >
+                      <span>DRUG SCREEN</span>
+                      <span>31</span>
+                    </div>
+                  </div>
+                  <div class="progress respirator">
+                    <div
+                      class="progress-bar bg_blue"
+                      role="progressbar"
+                      style="width: 90%;"
+                      aria-valuenow="25"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    >
+                      <span>RESPIRATOR FIT</span>
+                      <span>27</span>
+                    </div>
+                  </div>
+                  <div class="progress dot">
+                    <div
+                      class="progress-bar bg_blue"
+                      role="progressbar"
+                      style="width: 90%;"
+                      aria-valuenow="25"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    >
+                      <span>DOT</span>
+                      <span>6</span>
+                    </div>
+                  </div>
+                  <div class="progress other">
+                    <div
+                      class="progress-bar bg_red"
+                      role="progressbar"
+                      style="width: 90%;"
+                      aria-valuenow="25"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    >
+                      <span>OTHER</span>
+                      <span>42</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid margin_top_25">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="gradient_bottom_box">
+              <div class="injury_container rounded_box">
+                <div class="rounded_box_header">
+                  <span class="title"
+                    >OCCUPATIONAL INJURY / ILLNESS ACTIVITY</span
+                  >
+                  <div class="date_range">
+                    <span class="label">DATE RANGE: </span>
+                    <span class="value">1M</span>
+                  </div>
+                </div>
+                <div class="rounded_box_content content_padding_25">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="marker lost">
+                        <span class="label">LOST TIME CASES</span>
+                        <span class="value">23</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="marker cases">
+                        <span class="label">CASES W/WORK RESTRICTIONS</span>
+                        <span class="value">18</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="marker osha">
+                        <span class="label">OSHA RECORDABLES</span>
+                        <span class="value">24</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="marker total bg_green">
+                        <span class="label"
+                          >TOTAL WORKERS' COMPENSATION COSTS-YTD</span
+                        >
+                        <div class="value_wrap">
+                          <span class="dollar">$</span>
+                          <span class="value">64,287</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="gradient_bottom_box">
+              <div class="disability_container rounded_box">
+                <div class="rounded_box_header">
+                  <span class="title"
+                    >DISABILITY / CASE MANAGEMENT ACTIVITY</span
+                  >
+                  <div class="date_range">
+                    <span class="label">DATE RANGE: </span>
+                    <span class="value">1M</span>
+                  </div>
+                </div>
+                <div class="rounded_box_content content_padding_25">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="marker lost">
+                        <span class="label">LOST TIME CASES</span>
+                        <span class="value">7</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="marker cases">
+                        <span class="label">CASES W/WORK RESTRICTIONS</span>
+                        <span class="value">2</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="marker total bg_red">
+                        <span class="label"
+                          >TOTAL NUMBER LOST DAYS BEFORE RTW-YTD</span
+                        >
+                        <span class="value">47</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="marker days bg_green">
+                        <span class="label">DAYS SAVED-YTD</span>
+                        <span class="value">27</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p style="page-break-before: always;"></p>
+
+      <div class="container-fluid margin_top_25">
+        <div class="row">
+          <div class="col-xl-6">
+            <div class="gradient_bottom_box">
+              <div class="medical_container rounded_box">
+                <div class="rounded_box_header">
+                  <span class="title"
+                    >MEDICAL / HEALTH SURVEILLANCE ACTIVITY</span
+                  >
+                  <div class="date_range">
+                    <span class="label">DATE RANGE: </span>
+                    <span class="value">1M</span>
+                  </div>
+                </div>
+                <div class="rounded_box_content content_padding_25">
+                  <div class="row">
+                    <div class="col-md-3 col-6">
+                      <div class="marker exams">
+                        <span class="label">EXAMS WITHIN DUE DATE</span>
+                        <span class="value">52</span>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                      <div class="marker compliance bg_green">
+                        <span class="label">IN COMPLIANCE</span>
+                        <div class="value_wrap">
+                          <span class="value">79</span>
+                          <span class="percent">%</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                      <div class="marker past">
+                        <span class="label">EXAMS PAST DUE</span>
+                        <span class="value">14</span>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                      <div class="marker out bg_red">
+                        <span class="label">OUT OF COMPLIANCE</span>
+                        <div class="value_wrap">
+                          <span class="value">21</span>
+                          <span class="percent">%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="progress_wrapper">
+                    <div class="progress asbestos">
+                      <div
+                        class="progress-bar bg_blue"
+                        role="progressbar"
+                        style="width: 90%;"
+                        aria-valuenow="25"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      >
+                        <span>ASBESTOS</span>
+                      </div>
+                      <span>39(72%)</span>
+                    </div>
+                    <div class="progress cadmium">
+                      <div
+                        class="progress-bar bg_blue"
+                        role="progressbar"
+                        style="width: 90%;"
+                        aria-valuenow="25"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      >
+                        <span>CADMIUM</span>
+                      </div>
+                      <span>23 (92%)</span>
+                    </div>
+                    <div class="progress lead">
+                      <div
+                        class="progress-bar bg_blue"
+                        role="progressbar"
+                        style="width: 90%;"
+                        aria-valuenow="25"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      >
+                        <span>LEAD</span>
+                      </div>
+                      <span>7 (100%)</span>
+                    </div>
+                    <div class="progress other">
+                      <div
+                        class="progress-bar bg_red"
+                        role="progressbar"
+                        style="width: 90%;"
+                        aria-valuenow="25"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      >
+                        <span>OTHER</span>
+                      </div>
+                      <span>19 (84%)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <div class="gradient_bottom_box">
+              <div class="activity_container rounded_box">
+                <div class="rounded_box_header">
+                  <span class="title">PORTAL ACTIVITY</span>
+                  <div class="date_range">
+                    <span class="label">DATE RANGE: </span>
+                    <span class="value">1M</span>
+                  </div>
+                </div>
+                <div class="rounded_box_content content_padding_25">
+                  <div class="activity_wrapper">
+                    <div class="row">
+                      <div class="col-sm-6 col-lg-6">
+                        <div class="appointment">
+                          <div class="bg_grey">
+                            <div class="bg_white">
+                              <div class="bg_blue">
+                                <div class="center">
+                                  <span class="value">
+                                    62
+                                  </span>
+                                  <div class="label_wrapper">
+                                    <span class="label_value">138</span>
+                                    <span class="label">MIN. SAVED</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <span class="main_label">
+                            APPOINTMENTS MADE
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-sm-6 col-lg-6">
+                        <div class="question">
+                          <div class="bg_grey">
+                            <div class="bg_white">
+                              <div class="bg_blue">
+                                <div class="center">
+                                  <span class="value">
+                                    34
+                                  </span>
+                                  <div class="label_wrapper">
+                                    <span class="label_value">287</span>
+                                    <span class="label">MIN. SAVED</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <span class="main_label">
+                            QUESTIONNAIRIES COMPLETED
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="./assets/data/data.js"></script>
+    <script src="./assets/js/custom.js"></script>
+  </body>
+</html>
